@@ -2,7 +2,7 @@ import os
 from youtube_transcript_api import YouTubeTranscriptApi, NoTranscriptFound
 
 # 视频ID和频道名称
-video_id = "Bbij9njZ3WQ"  # 请替换为实际的视频ID
+video_id = "Cm_Xt84bBn0"  # 请替换为实际的视频ID
 channel_name = "The_Professor_Trades"  # 文件名友好的频道名称
 
 # 创建保存字幕的文件夹

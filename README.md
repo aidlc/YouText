@@ -7,6 +7,7 @@ youtube-transcript-tool
 $ python3 -V
 $ python3 -m venv _yenv_
 $ source _yenv_/bin/activate
+$ cd  ~/youtube/YouText
 $ python3 -m pip install --upgrade pip
 # 安装库
 $ pip install \

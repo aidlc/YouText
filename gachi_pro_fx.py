@@ -2,7 +2,7 @@ import os
 from youtube_transcript_api import YouTubeTranscriptApi, NoTranscriptFound
 
 # 视频ID和频道名称
-video_id = "kAs4XF6MsOs"
+video_id = "D46kyjjvrSQ"
 channel_name = "ガチプロFX竹内のりひろ"
 
 # 创建保存字幕的文件夹
