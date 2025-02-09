@@ -2,8 +2,8 @@ import os
 from youtube_transcript_api import YouTubeTranscriptApi, NoTranscriptFound
 
 # 视频ID和频道名称
-video_id = "rk0G_mE9JX4"  # 请替换为实际的视频ID
-channel_name = "CM"  # 文件名友好的频道名称
+video_id = "uQVPm9jcKBM"  # 请替换为实际的视频ID
+channel_name = "Hou"  # 文件名友好的频道名称
 
 # 创建保存字幕的文件夹
 output_folder = "subtitles"
