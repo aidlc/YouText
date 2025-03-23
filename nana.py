@@ -26,7 +26,7 @@ try:
 
     # 保存原版字幕（汉语）
     original_content = "\n".join(
-        item['text'] for item in transcript.fetch() if item['text'] != "[音乐]"
+        item.text for item in transcript.fetch() if item.text != "[音乐]"
     )
     original_file_path = os.path.join(output_folder, f"original_transcript_{channel_name}.txt")
     with open(original_file_path, "w", encoding="utf-8") as f:
@@ -35,14 +35,18 @@ try:
 
     # 翻译字幕为英文
     print("\n翻译为英文...")
-    translated_transcript = transcript.translate('en')  # 翻译为英文
-    translated_content = "\n".join(
-        item['text'] for item in translated_transcript.fetch() if item['text'] != "[Music]"
-    )
-    translated_file_path = os.path.join(output_folder, f"translated_transcript_{channel_name}.txt")
-    with open(translated_file_path, "w", encoding="utf-8") as f:
-        f.write(translated_content)
-    print(f"翻译后的字幕已保存为 {translated_file_path}")
+    try:
+        translated_transcript = transcript.translate('en')  # 翻译为英文
+        translated_content = "\n".join(
+            item.text for item in translated_transcript.fetch() if item.text != "[Music]"
+        )
+        translated_file_path = os.path.join(output_folder, f"translated_transcript_{channel_name}.txt")
+        with open(translated_file_path, "w", encoding="utf-8") as f:
+            f.write(translated_content)
+        print(f"翻译后的字幕已保存为 {translated_file_path}")
+    except Exception as e:
+        print("翻译失败或该字幕不支持翻译。")
+        print("错误信息：", e)
 
 except NoTranscriptFound as e:
     print("字幕获取失败：", e)

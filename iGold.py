@@ -2,7 +2,7 @@ import os
 from youtube_transcript_api import YouTubeTranscriptApi, NoTranscriptFound
 
 # 视频ID和频道名称
-video_id = "5uc0mFC8Oo4"  # 请替换为实际的视频ID
+video_id = "CxhjEN3aew4"  # 请替换为实际的视频ID
 channel_name = "iGold"  # 文件名友好的频道名称
 
 # 创建保存字幕的文件夹
@@ -26,7 +26,7 @@ try:
 
     # 保存原版字幕（英语）
     original_content = "\n".join(
-        item['text'] for item in transcript.fetch() if item['text'] != "[Music]"
+        item.text for item in transcript.fetch() if item.text != "[Music]"
     )
     original_file_path = os.path.join(output_folder, f"original_transcript_{channel_name}.txt")
     with open(original_file_path, "w", encoding="utf-8") as f:
@@ -35,14 +35,18 @@ try:
 
     # 翻译字幕为中文
     print("\nTranslating transcript to Simplified Chinese...")
-    translated_transcript = transcript.translate('zh-Hans')  # 翻译为简体中文
-    translated_content = "\n".join(
-        item['text'] for item in translated_transcript.fetch() if item['text'] != "[Music]"
-    )
-    translated_file_path = os.path.join(output_folder, f"translated_transcript_{channel_name}.txt")
-    with open(translated_file_path, "w", encoding="utf-8") as f:
-        f.write(translated_content)
-    print(f"Translated transcript saved to {translated_file_path}")
+    try:
+        translated_transcript = transcript.translate('zh-Hans')  # 翻译为简体中文
+        translated_content = "\n".join(
+            item.text for item in translated_transcript.fetch() if item.text != "[Music]"
+        )
+        translated_file_path = os.path.join(output_folder, f"translated_transcript_{channel_name}.txt")
+        with open(translated_file_path, "w", encoding="utf-8") as f:
+            f.write(translated_content)
+        print(f"Translated transcript saved to {translated_file_path}")
+    except Exception as e:
+        print("Translation failed or not supported.")
+        print("Error info:", e)
 
 except NoTranscriptFound as e:
     print("Transcript retrieval failed:", e)
